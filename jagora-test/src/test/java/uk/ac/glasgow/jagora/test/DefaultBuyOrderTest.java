@@ -65,12 +65,12 @@ public class DefaultBuyOrderTest {
 	
 	@Test
 	public void testGetTrader() {
-		assertTrue("Trader is not the same as the one passed in the constructor.", thisBuyOrder.getTrader().equals(trader));	
+		assertTrue("Trader is not the same as the one passed in the constructor.", thisBuyOrder.getTrader() == trader);	
 	}
 	
 	@Test
 	public void testGetStock() {
-	assertTrue("Stock is not the same as the one passed in the constructor.", thisBuyOrder.getStock().equals(lemons));
+	assertTrue("Stock is not the same as the one passed in the constructor.", thisBuyOrder.getStock() == lemons);
 	}
 	
 	@Test
@@ -89,7 +89,7 @@ public class DefaultBuyOrderTest {
 		Integer oldLemons = trader.getInventoryHolding(lemons);
 		
 		goodTrade = new StubTrade(3, 5.0, lemons);
-		tickEvent = new StubTickEvent<Trade>(goodTrade);
+		tickEvent = new StubTickEvent<Trade>(goodTrade, 0L);
 		thisBuyOrder.satisfyTrade(tickEvent);
 		
 		assertTrue("Trader's cash was not reduced", trader.getCash() == oldCash - tickEvent.getEvent().getPrice());
@@ -100,21 +100,21 @@ public class DefaultBuyOrderTest {
 	@Test(expected=TradeException.class)
 	public void testBadSatisfyTradeQuantityNegative() throws Exception {
 		badTrade = new StubTrade(-1, 5.0, lemons);
-		tickEvent = new StubTickEvent<Trade>(goodTrade);
+		tickEvent = new StubTickEvent<Trade>(goodTrade, 0L);
 		thisBuyOrder.satisfyTrade(tickEvent);
 	}
 	
 	@Test(expected=TradeException.class)
 	public void testBadSatisfyTradeQuantityZero() throws Exception {
 		badTrade = new StubTrade(0, 5.0, lemons);
-		tickEvent = new StubTickEvent<Trade>(goodTrade);
+		tickEvent = new StubTickEvent<Trade>(goodTrade, 0L);
 		thisBuyOrder.satisfyTrade(tickEvent);
 	}
 	
 	@Test(expected=TradeException.class)
 	public void testBadSatisfyTradeCost() throws Exception{
 		badTrade = new StubTrade(1, -5.0, lemons);
-		tickEvent = new StubTickEvent<Trade>(goodTrade);
+		tickEvent = new StubTickEvent<Trade>(goodTrade, 0L);
 		thisBuyOrder.satisfyTrade(tickEvent);
 	}
 	
@@ -124,7 +124,7 @@ public class DefaultBuyOrderTest {
 		Integer newLemons = trader.getInventoryHolding(lemons);
 		
 		goodTrade = new StubTrade(3, 5.0, lemons);
-		tickEvent = new StubTickEvent<Trade>(goodTrade);
+		tickEvent = new StubTickEvent<Trade>(goodTrade, 0L);
 		thisBuyOrder.rollBackTrade(tickEvent);
 		
 		assertTrue("Trader's cash was not properly restored", newCash + tickEvent.getEvent().getPrice() == trader.getCash());
@@ -135,21 +135,21 @@ public class DefaultBuyOrderTest {
 	@Test(expected=TradeException.class)
 	public void testBadRollbackTradeQuantityNegative() throws Exception {
 		badTrade = new StubTrade(-1, 5.0, lemons);
-		tickEvent = new StubTickEvent<Trade>(goodTrade);
+		tickEvent = new StubTickEvent<Trade>(goodTrade, 0L);
 		thisBuyOrder.rollBackTrade(tickEvent);
 	}
 	
 	@Test(expected=TradeException.class)
 	public void testBadRollbackTradeQuantityZero() throws Exception {
 		badTrade = new StubTrade(0, 5.0, lemons);
-		tickEvent = new StubTickEvent<Trade>(goodTrade);
+		tickEvent = new StubTickEvent<Trade>(goodTrade, 0L);
 		thisBuyOrder.rollBackTrade(tickEvent);
 	}
 	
 	@Test(expected=TradeException.class)
 	public void testBadRollbackTradeCostNegative() throws Exception{
 		badTrade = new StubTrade(1, -5.0, lemons);
-		tickEvent = new StubTickEvent<Trade>(goodTrade);
+		tickEvent = new StubTickEvent<Trade>(goodTrade, 0L);
 		thisBuyOrder.rollBackTrade(tickEvent);
 	}
 }
