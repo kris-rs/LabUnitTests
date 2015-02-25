@@ -63,10 +63,18 @@ public class DefaultTradeTest {
 	}
 
 	@Test(expected = TradeException.class)
-    public void testNotMatcingPricesTrade() throws Exception{
+	public void testProperTrade() throws Exception{
+		sOrder = new StubSellOrder(null, stock, 10, 9.99);
+		bOrder = new StubBuyOrder(null, stock, 10, 11.11);
+		trade = new DefaultTrade(world, bOrder, sOrder, stock, 10, 99.9);
+		trade.execute();
+	}
+	
+	@Test(expected = TradeException.class)
+    public void testNotMatchingPricesTrade() throws Exception{
 		sOrder = new StubSellOrder(null, stock, 10, 9.99);
 		bOrder = new StubBuyOrder(null, stock, 10, 8.00);
-		trade = new DefaultTrade(world, bOrder, sOrder, stock, 10, 8.00);
+		trade = new DefaultTrade(world, bOrder, sOrder, stock, 10, 99.9);
 		trade.execute();
 	}
 	
@@ -74,7 +82,7 @@ public class DefaultTradeTest {
 	public void testNotMatchingStocksTrade() throws Exception{
 		sOrder = new StubSellOrder(null, stock, 10, 9.99);
 		bOrder = new StubBuyOrder(null, null, 10, 11.11);
-		trade = new DefaultTrade(world, bOrder, sOrder, stock, 10, 9.99);
+		trade = new DefaultTrade(world, bOrder, sOrder, stock, 10, 99.9);
 		trade.execute();
 	}
 	

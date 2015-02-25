@@ -11,7 +11,7 @@ import uk.ac.glasgow.jagora.impl.DefaultStock;
 
 public class DefaultStockTest {
 
-	Stock apples;
+	protected Stock apples;
 	
 	@Before
 	public void setUp(){
