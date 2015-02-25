@@ -1,7 +1,0 @@
-package uk.ac.glasgow.jagora.test.stub;
-
-import uk.ac.glasgow.jagora.Trader;
-
-public class StubTrader implements Trader{
-	public static final Trader trader = new StubTrader();
-}
