@@ -6,7 +6,6 @@ import uk.ac.glasgow.jagora.TickEvent;
 import uk.ac.glasgow.jagora.Trade;
 import uk.ac.glasgow.jagora.TradeException;
 import uk.ac.glasgow.jagora.Trader;
-import uk.ac.glasgow.jagora.impl.DefaultTrader;
 
 public class StubBuyOrder implements BuyOrder{
 

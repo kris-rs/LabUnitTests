@@ -6,7 +6,6 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import uk.ac.glasgow.jagora.Stock;
 import uk.ac.glasgow.jagora.TickEvent;
 import uk.ac.glasgow.jagora.Trade;
 import uk.ac.glasgow.jagora.World;
@@ -29,6 +28,8 @@ public class DefaultWorldTest {
 	@After
 	public void tearDown(){
 		world = null;
+		trade = null;
+		tickEvent = null;
 	}
 	
 	@Test
