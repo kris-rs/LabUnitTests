@@ -9,30 +9,40 @@ import uk.ac.glasgow.jagora.Trader;
 
 public class StubSellOrder implements SellOrder{
 
-	public static final SellOrder sOrder = new StubSellOrder();
+	Trader trader;
+	Stock stock;
+	Integer quantity;
+	Double price;
+	
+	public StubSellOrder(Trader trader, Stock stock, Integer quantity, Double price) {
+		this.trader = trader;
+		this.stock = stock;
+		this.quantity = quantity;
+		this.price = price;
+	}
 	
 	@Override
 	public Trader getTrader() {
 		// TODO Auto-generated method stub
-		return null;
+		return trader;
 	}
 
 	@Override
 	public Stock getStock() {
 		// TODO Auto-generated method stub
-		return null;
+		return stock;
 	}
 
 	@Override
 	public Integer getRemainingQuantity() {
 		// TODO Auto-generated method stub
-		return null;
+		return quantity;
 	}
 
 	@Override
 	public Double getPrice() {
 		// TODO Auto-generated method stub
-		return null;
+		return price;
 	}
 
 	@Override

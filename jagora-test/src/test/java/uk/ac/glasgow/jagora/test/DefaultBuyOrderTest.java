@@ -65,12 +65,12 @@ public class DefaultBuyOrderTest {
 	
 	@Test
 	public void testGetTrader() {
-		assertTrue("Trader is not the same as the one passed in the constructor.", thisBuyOrder.getTrader() == trader);	
+		assertTrue("Trader is not the same as the one passed in the constructor.", thisBuyOrder.getTrader().equals(trader));	
 	}
 	
 	@Test
 	public void testGetStock() {
-		assertTrue("Stock is not the same as the one passed in the constructor.", thisBuyOrder.getStock() == lemons);
+	assertTrue("Stock is not the same as the one passed in the constructor.", thisBuyOrder.getStock().equals(lemons));
 	}
 	
 	@Test
@@ -98,8 +98,15 @@ public class DefaultBuyOrderTest {
 	}
 	
 	@Test(expected=TradeException.class)
-	public void testBadSatisfyTradeQuantity() throws Exception {
+	public void testBadSatisfyTradeQuantityNegative() throws Exception {
 		badTrade = new StubTrade(-1, 5.0, lemons);
+		tickEvent = new StubTickEvent<Trade>(goodTrade);
+		thisBuyOrder.satisfyTrade(tickEvent);
+	}
+	
+	@Test(expected=TradeException.class)
+	public void testBadSatisfyTradeQuantityZero() throws Exception {
+		badTrade = new StubTrade(0, 5.0, lemons);
 		tickEvent = new StubTickEvent<Trade>(goodTrade);
 		thisBuyOrder.satisfyTrade(tickEvent);
 	}
@@ -126,14 +133,21 @@ public class DefaultBuyOrderTest {
 	}
 	
 	@Test(expected=TradeException.class)
-	public void testBadRollbackTradeQuantity() throws Exception {
+	public void testBadRollbackTradeQuantityNegative() throws Exception {
 		badTrade = new StubTrade(-1, 5.0, lemons);
 		tickEvent = new StubTickEvent<Trade>(goodTrade);
 		thisBuyOrder.rollBackTrade(tickEvent);
 	}
 	
 	@Test(expected=TradeException.class)
-	public void testBadRollbackTradeCost() throws Exception{
+	public void testBadRollbackTradeQuantityZero() throws Exception {
+		badTrade = new StubTrade(0, 5.0, lemons);
+		tickEvent = new StubTickEvent<Trade>(goodTrade);
+		thisBuyOrder.rollBackTrade(tickEvent);
+	}
+	
+	@Test(expected=TradeException.class)
+	public void testBadRollbackTradeCostNegative() throws Exception{
 		badTrade = new StubTrade(1, -5.0, lemons);
 		tickEvent = new StubTickEvent<Trade>(goodTrade);
 		thisBuyOrder.rollBackTrade(tickEvent);
