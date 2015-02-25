@@ -21,7 +21,7 @@ public interface Order {
 	 */
 	public Double getPrice();
 	
-	/**
+	/**X
 	 * Applies a trade to this order and to the underlying trader.
 	 * @param tradeEvent
 	 * @throws TradeException

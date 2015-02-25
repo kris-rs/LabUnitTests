@@ -1,0 +1,5 @@
+package uk.ac.glasgow.jagora.test.stub;
+
+public class StubTrader {
+	public static final Trader trader = new StubTrader();
+}
