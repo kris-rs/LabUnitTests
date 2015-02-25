@@ -7,6 +7,10 @@ public class StubTickEvent<T> implements TickEvent<T>{
 	private T object;
 	Long tickTimestamp;
 	
+	public StubTickEvent(T object) {
+		this(object, null);
+	}
+	
 	public StubTickEvent(T object, Long tickTimestamp) {
 		this.object = object;
 		this.tickTimestamp = tickTimestamp;

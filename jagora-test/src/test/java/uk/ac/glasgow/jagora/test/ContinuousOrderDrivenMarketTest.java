@@ -214,8 +214,5 @@ public class ContinuousOrderDrivenMarketTest {
 		List<TickEvent<Trade>> expectedResult = Arrays.asList(
 				new StubTickEvent<Trade>(new StubTrade(3, 27.0, lemons), 0L));
 		assertTrue("Returned tick events are incorrect", returnResult.equals(expectedResult));
-	}
-	
-
-	
+	}	
 }
