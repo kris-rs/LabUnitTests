@@ -9,6 +9,9 @@ import uk.ac.glasgow.jagora.Trader;
 
 public class StubTrader implements Trader{
 	public static final Trader trader = new StubTrader();
+	// The two objects below are used in the ContinuousOrderDrivenMarketTest class
+	public static final Trader buyer = new StubTrader();
+	public static final Trader seller = new StubTrader();
 
 	@Override
 	public String getName() {

@@ -5,9 +5,11 @@ import uk.ac.glasgow.jagora.TickEvent;
 public class StubTickEvent<T> implements TickEvent<T>{
 	
 	private T object;
+	Long tickTimestamp;
 	
-	public StubTickEvent(T object) {
+	public StubTickEvent(T object, Long tickTimestamp) {
 		this.object = object;
+		this.tickTimestamp = tickTimestamp;
 	}
 	
 	@Override
@@ -25,7 +27,7 @@ public class StubTickEvent<T> implements TickEvent<T>{
 	@Override
 	public Long getTick() {
 		// TODO Auto-generated method stub
-		return null;
+		return tickTimestamp;
 	}
 	
 
